@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <TsGenFileExe Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">"$(MSBuildThisFileDirectory)/net46/ts-gen.exe"</TsGenFileExe>
+    <TsGenFileExe Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard'">dotnet "$(MSBuildThisFileDirectory)/netcoreapp2.0/ts-gen.dll"</TsGenFileExe>
+    <TypescriptOutput>"$(MSBuildProjectDir)/wwwroot/ts-gen/"</TypescriptOutput>
+  </PropertyGroup>
+
+  <Target Name="GenerateTypescript" AfterTargets="CoreCompile">
+    <Exec Command="$(TsGenFileExe) $(TargetPathWithTargetPlatformMoniker) $(TypescriptOutput)" />
+  </Target>
+</Project>

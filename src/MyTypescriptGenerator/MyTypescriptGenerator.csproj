@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <AssemblyName>ts-gen</AssemblyName>
+    <TargetFrameworks>netcoreapp2.0;net46</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Pack settings -->
+  <PropertyGroup>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NuspecFile>ts-gen.nuspec</NuspecFile>
+    <IntermediatePackDir>bin/$(Configuration)/publish/</IntermediatePackDir>
+    <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
+    <NuspecProperties>publishDir=$(IntermediatePackDir)</NuspecProperties>
+  </PropertyGroup>
+
+  <!-- Executes /t:Publish for all target frameworks before packing-->
+  <Target Name="PublishAll" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_TargetFramework Include="$(TargetFrameworks)" />
+    </ItemGroup>
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" Properties="TargetFramework=%(_TargetFramework.Identity)" />
+  </Target>
+
+</Project>
