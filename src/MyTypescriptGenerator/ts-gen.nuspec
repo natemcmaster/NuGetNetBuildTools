@@ -12,6 +12,7 @@
     <file src="MyTypescriptGenerator.targets" target="build/netstandard1.0/MyTypescriptGenerator.targets" />
     <file src="MyTypescriptGenerator.targets" target="build/net45/MyTypescriptGenerator.targets" />
 
+    <file src="GenerateTypescript.targets" target="tools/" />
     <file src="$publishdir$\net46\**\*" target="tools/net46/" />
     <file src="$publishdir$\netcoreapp2.0\**\*" target="tools/netcoreapp2.0/" />
   </files>

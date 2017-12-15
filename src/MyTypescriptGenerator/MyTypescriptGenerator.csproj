@@ -10,9 +10,9 @@
   <PropertyGroup>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <NuspecFile>ts-gen.nuspec</NuspecFile>
-    <IntermediatePackDir>bin/$(Configuration)/publish/</IntermediatePackDir>
+    <IntermediatePackDir>$(MSBuildThisFileDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
     <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
-    <NuspecProperties>publishDir=$(IntermediatePackDir)</NuspecProperties>
+    <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
   </PropertyGroup>
 
   <!-- Executes /t:Publish for all target frameworks before packing-->
